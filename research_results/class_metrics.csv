@@ -1,0 +1,12 @@
+,precision,recall,f1-score,support
+Hello,0.0,0.0,0.0,0.0
+Home,0.0,0.0,0.0,0.0
+I love you,0.0,0.0,0.0,0.0
+No,0.0,0.0,0.0,0.0
+Okay,0.0,0.0,0.0,0.0
+Please,0.0,0.0,0.0,0.0
+Thank you,1.0,1.0,1.0,203.0
+Yes,1.0,1.0,1.0,146.0
+accuracy,1.0,1.0,1.0,1.0
+macro avg,0.25,0.25,0.25,349.0
+weighted avg,1.0,1.0,1.0,349.0

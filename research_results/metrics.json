@@ -1,0 +1,29 @@
+{
+    "dataset": {
+        "total_images": 1745,
+        "classes": 8,
+        "class_counts": {
+            "Hello": 254,
+            "Home": 166,
+            "I love you": 306,
+            "No": 410,
+            "Okay": 119,
+            "Please": 57,
+            "Thank you": 287,
+            "Yes": 146
+        }
+    },
+    "evaluation_split": "Validation (20% of dataset, NO INDEPENDENT TEST SET AVAILABLE)",
+    "evaluated_samples": 349,
+    "performance": {
+        "accuracy": 1.0,
+        "precision_weighted": 1.0,
+        "recall_weighted": 1.0,
+        "f1_score_weighted": 1.0
+    },
+    "latency": {
+        "total_inference_time_sec": 1.41917085647583,
+        "avg_latency_ms_per_image": 4.066392138899227,
+        "estimated_fps_batch_inference": 245.9182405046406
+    }
+}

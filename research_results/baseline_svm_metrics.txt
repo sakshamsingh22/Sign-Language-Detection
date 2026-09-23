@@ -1,0 +1,4 @@
+SVM Baseline 5-Fold CV:
+Accuracy: 0.9533 ± 0.0124
+Latency: 0.03 ms/image
+Valid images used: 1607

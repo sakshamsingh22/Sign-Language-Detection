@@ -1,0 +1,23 @@
+{
+    "total_samples": 1745,
+    "num_classes": 8,
+    "classes": [
+        "Hello",
+        "Home",
+        "I love you",
+        "No",
+        "Okay",
+        "Please",
+        "Thank you",
+        "Yes"
+    ],
+    "accuracy": 0.9621776504297994,
+    "weighted_precision": 0.9651586338304042,
+    "weighted_recall": 0.9621776504297994,
+    "weighted_f1_score": 0.9625078807256922,
+    "macro_precision": 0.9625405211425012,
+    "macro_recall": 0.9582895715774711,
+    "macro_f1_score": 0.9586143822024605,
+    "latency_ms_per_image": 3.241638877671906,
+    "fps": 308.4859349657678
+}

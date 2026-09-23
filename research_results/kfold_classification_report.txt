@@ -1,0 +1,14 @@
+              precision    recall  f1-score   support
+
+       Hello       0.96      0.96      0.96       254
+        Home       0.97      1.00      0.99       166
+  I love you       0.98      0.85      0.91       306
+          No       0.93      0.94      0.93       410
+        Okay       0.89      0.85      0.87       119
+      Please       0.95      0.93      0.94        57
+   Thank you       0.95      0.99      0.97       287
+         Yes       0.82      0.97      0.89       146
+
+    accuracy                           0.94      1745
+   macro avg       0.93      0.94      0.93      1745
+weighted avg       0.94      0.94      0.94      1745
