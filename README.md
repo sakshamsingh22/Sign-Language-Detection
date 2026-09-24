@@ -128,29 +128,46 @@ flowchart TD
 - **Reason**: Background threading ensures the video feed does not freeze while the OS synthesizes and plays the audio.
 
 ## 7. AI / ML Details
+
+Because this project uses a **Dual-Mode Architecture**, there are two parallel models working together:
+
+### 7.1 Word Recognition Model (8 Classes)
 - **Model Architecture**: MobileNetV2 (base) + GlobalAveragePooling2D + Dropout(0.3) + Dense(128, ReLU) + Dropout(0.2) + Dense(8, Softmax)
-- **Model Name**: MobileNetV2 Transfer Learning
-- **Dataset**: Custom captured dataset
-- **Input Size**: 224x224 (Model config), though the pipeline currently scales 300x300 crops.
-- **Loss Function**: Categorical Crossentropy
+- **Input Size**: 224x224 (Aspect-Ratio Preserved on 300x300 White Canvas).
 - **Optimizer**: `tf.keras.optimizers.legacy.Adam` (Optimized for Apple Silicon)
 - **Learning Rate**: 1e-3 (Phase 1), 1e-4 (Phase 2)
 - **Epochs**: 30 (Phase 1), 20 (Phase 2)
 - **Batch Size**: 16
-- **Train/Validation Split**: 80% / 20% (Random Stratified Seed=42)
-- **Hardware**: CPU/M-series XNNPACK acceleration.
-- **Callbacks**: EarlyStopping (patience=5), ReduceLROnPlateau (factor=0.5, patience=3), ModelCheckpoint (save_best_only)
+- **Callbacks**: EarlyStopping (patience=5), ReduceLROnPlateau (factor=0.5, patience=3)
 
-## 8. Dataset
-- **Dataset Name**: Custom ISL Gesture Dataset
+### 7.2 Alphabet Recognition Model (Kaggle - 35 Classes)
+- **Model Architecture**: MobileNetV2 (base) + GlobalAveragePooling2D + Dropout(0.3) + Dense(256, ReLU) + Dropout(0.2) + Dense(35, Softmax)
+- **Input Size**: 224x224 (Raw Dual-Hand Bounding Box Crop).
+- **Optimizer**: `tf.keras.optimizers.legacy.Adam` (Optimized for Apple Silicon)
+- **Learning Rate**: 1e-3 (Phase 1), 1e-4 (Phase 2)
+- **Epochs**: 5 (Phase 1), 5 (Phase 2)
+- **Batch Size**: 32
+- **Callbacks**: EarlyStopping (patience=3), ReduceLROnPlateau (factor=0.5, patience=2)
+
+**Hardware for Both**: CPU/M-series XNNPACK acceleration.
+
+## 8. Datasets
+
+This project utilizes two completely different datasets to power the Dual-Mode architecture:
+
+### 8.1 Custom ISL Gesture Dataset (Words Mode)
 - **Source**: Collected locally via webcam (`datacollection.py`)
-- **Number of Samples**: ~1,500+ images
+- **Number of Samples**: ~1,745 images
 - **Classes** (8): Hello, Home, I love you, No, Okay, Please, Thank you, Yes.
-- **Data Format**: 300x300 RGB `.jpg` images with white backgrounds.
+- **Data Format**: 300x300 RGB `.jpg` images with pure white backgrounds.
 - **Collection methodology**: Real-time localized hand cropping using MediaPipe bounding boxes.
 
-### Dataset Information Required
-- The exact distribution of samples per class is currently determined dynamically at runtime and should be explicitly documented in a static EDA report before publication.
+### 8.2 Kaggle ISL Dataset (Alphabets Mode)
+- **Source**: [Prathum Arikeri on Kaggle](https://www.kaggle.com/datasets/prathumarikeri/indian-sign-language-isl) (`kagglehub`)
+- **Number of Samples**: 42,000+ images
+- **Classes** (35): Alphabets A-Z, Numbers 1-9.
+- **Data Format**: 128x128 RGB `.jpg` images (resized to 224x224 during training).
+- **Characteristics**: Features diverse lighting, backgrounds, and varying hand sizes, requiring the system to dynamically switch to a 2-hand MediaPipe tracking mode (`maxHands=2`) for certain alphabetical gestures.
 
 ## 9. Algorithms
 
