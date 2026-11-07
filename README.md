@@ -20,7 +20,7 @@ This project provides a lightweight, real-time ISL translation tool that runs en
 ## 2. 🔥 New: Dual-Mode Hybrid Architecture
 This project features a highly advanced **Dual-Mode UI**, allowing it to scale from custom vocabulary words to the entire ISL alphabet seamlessly in real-time.
 
-- **Words Mode (8 Classes):** Uses a custom-built dataset for dynamic conversational words (e.g., *Hello, Please, Thank you*). It utilizes a novel **Aspect-Ratio-Preserving White Canvas Normalization** technique to completely eliminate background noise, achieving 93.75% K-Fold cross-validation accuracy.
+- **Words Mode (8 Classes):** Uses a custom-built dataset for dynamic conversational words (e.g., *Hello, Please, Thank you*). It uses **aspect-ratio-preserving white-canvas normalization** to standardize hand crops. The repository's current training workflow uses a seeded 80/20 train/validation split; K-fold cross-validation has not yet been completed.
 - **Alphabets Mode (35 Classes):** Integrates a massive **42,000+ image open-source Kaggle dataset** (`prathumarikeri/indian-sign-language-isl`) for complete A-Z and 1-9 recognition. It automatically scales to detect both hands (merged bounding boxes) to correctly interpret two-handed ISL alphabets.
 
 **You can switch between these two modes instantly in real-time by pressing the `SPACEBAR` during live inference!**
@@ -219,14 +219,14 @@ Appropriate metrics to evaluate this classification system:
 - **Inference Latency (FPS)**: Critical for real-time viability.
 
 ## 13. Results
-The model currently outputs the following metrics during training/validation:
+The README records the following ranges from the current training/validation runs. These are project-reported internal split results, not independently reproduced benchmark results:
 
 | Metric | Value |
 |--------|-------|
 | Training Accuracy | ~97.1% - 99.8% |
 | Validation Accuracy | ~96.3% - 100% |
 
-*Note: These results are based on the internal validation split. True real-world performance requires the isolated test set experiments mentioned above.*
+*Important: These figures are reported from an internal validation split and have not been independently verified here. They should not be presented as test-set accuracy or real-world generalization. K-fold validation, an independent user-held-out test set, and latency benchmarking remain outstanding.*
 
 ## 14. Baseline Comparison
 For a research paper, this system should be compared against:
